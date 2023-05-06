@@ -199,7 +199,7 @@ class _TicTacToePlayState extends State<TicTacToePlay> {
           [0, 2],
           [2, 0],
           [2, 2],
-          [2, 2],
+          [1, 1],
         ];
         int index = Random().nextInt(5);
         boards[randoms[index][0]][randoms[index][1]] = bot;
@@ -210,10 +210,9 @@ class _TicTacToePlayState extends State<TicTacToePlay> {
           [0, 2],
           [2, 0],
           [2, 2],
-          [2, 2],
         ];
         while (true) {
-          int index = Random().nextInt(5);
+          int index = Random().nextInt(4);
           if (boards[1][1] == '') {
             boards[1][1] = bot;
             break;
@@ -241,6 +240,19 @@ class _TicTacToePlayState extends State<TicTacToePlay> {
           if (isSudutTerdapat2(bot)) {
             break outerLoop;
           }
+          if (boards[0][0] == '' && (boards[0][2] != player || boards[2][0] != player)) {
+            boards[0][0] = bot;
+            break outerLoop;
+          } else if (boards[0][2] == '' && (boards[0][0] != player || boards[2][2] != player)) {
+            boards[0][2] = bot;
+            break outerLoop;
+          } else if (boards[2][0] == '' && (boards[0][0] != player || boards[2][2] != player)) {
+            boards[2][0] = bot;
+            break outerLoop;
+          } else if (boards[2][2] == '' && (boards[0][2] != player || boards[2][0] != player)) {
+            boards[2][2] = bot;
+            break outerLoop;
+          }
           if (boards[randoms[index][0]][randoms[index][1]] == '') {
             boards[randoms[index][0]][randoms[index][1]] = bot;
             break;
@@ -254,6 +266,49 @@ class _TicTacToePlayState extends State<TicTacToePlay> {
           }
           if (isBotBlockPlayer(bot)) {
             break;
+          }
+          if (ctr == 4) {
+            if (boards[0][0] == bot &&
+                boards[1][1] == bot &&
+                boards[0][1] == '') {
+              boards[0][1] = bot;
+              break;
+            } else if (boards[0][0] == bot &&
+                boards[1][1] == bot &&
+                boards[1][0] == '') {
+              boards[1][0] = bot;
+              break;
+            } else if (boards[2][0] == bot &&
+                boards[1][1] == bot &&
+                boards[1][0] == '') {
+              boards[1][0] = bot;
+              break;
+            } else if (boards[2][0] == bot &&
+                boards[1][1] == bot &&
+                boards[2][1] == '') {
+              boards[2][1] = bot;
+              break;
+            } else if (boards[2][2] == bot &&
+                boards[1][1] == bot &&
+                boards[2][1] == '') {
+              boards[2][1] = bot;
+              break;
+            } else if (boards[2][2] == bot &&
+                boards[1][1] == bot &&
+                boards[1][2] == '') {
+              boards[1][2] = bot;
+              break;
+            } else if (boards[0][2] == bot &&
+                boards[1][1] == bot &&
+                boards[1][2] == '') {
+              boards[1][2] = bot;
+              break;
+            } else if (boards[0][2] == bot &&
+                boards[1][1] == bot &&
+                boards[0][1] == '') {
+              boards[0][1] = bot;
+              break;
+            }
           }
           if (isSudutTerdapat2(bot)) {
             break;

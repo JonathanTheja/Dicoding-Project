@@ -1,4 +1,5 @@
 import 'package:final_project_dicoding/models/menus.dart';
+import 'package:final_project_dicoding/tictactoe_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -34,26 +35,43 @@ class _MenusScreenState extends State<MenusScreen> {
                         imageWidth: 100,
                       );
                       return listViewItem;
+                      // return listViewItem(context, menus[index], 8.0, 15, 100);
                     },
                   );
                 } else if (constraints.maxWidth <= 1200) {
+                  List<Widget> gridViewItemList = List.generate(
+                      menus.length,
+                      (index) => GridViewItem(
+                          menu: menus[index],
+                          fontSize: 30,
+                          imageWidth: 150,
+                          bottomPadding: 10));
                   return GridView.count(
+                      crossAxisCount: 3,
+                      childAspectRatio: 0.75,
+                      children: gridViewItemList
+                      // List.generate(
+                      //     menus.length,
+                      //     (index) =>
+                      //         gridViewItem(context, menus[index], 30, 150, 10)),
+                      );
+                }
+                List<Widget> gridViewItemList = List.generate(
+                    menus.length,
+                    (index) => GridViewItem(
+                        menu: menus[index],
+                        fontSize: 40,
+                        imageWidth: 250,
+                        bottomPadding: 30));
+                return GridView.count(
                     crossAxisCount: 3,
                     childAspectRatio: 0.75,
-                    children: List.generate(
-                        menus.length,
-                        (index) =>
-                            gridViewItem(context, menus[index], 30, 150, 10)),
-                  );
-                }
-                return GridView.count(
-                  crossAxisCount: 3,
-                  childAspectRatio: 0.75,
-                  children: List.generate(
-                      menus.length,
-                      (index) =>
-                          gridViewItem(context, menus[index], 50, 300, 30)),
-                );
+                    children: gridViewItemList
+                    // List.generate(
+                    //     menus.length,
+                    //     (index) =>
+                    //         gridViewItem(context, menus[index], 50, 300, 30)),
+                    );
               });
             }));
   }
@@ -111,8 +129,7 @@ class ListViewItemState extends State<ListViewItem> {
           // subtitle: Text(article.author),
           onTap: () {
             //argument ini mau ngirim detailnya apa
-            // Navigator.pushNamed(context, DetailNewsScreen.routeName,
-            //     arguments: article);
+            Navigator.pushNamed(context, widget.menu.route);
           },
         ),
       ),
@@ -141,6 +158,7 @@ class GridViewItemState extends State<GridViewItem> {
   @override
   Widget build(BuildContext context) {
     return MouseRegion(
+        cursor: SystemMouseCursors.click,
         onEnter: (event) => {
               setState(() => {_isHovered = true})
             },
@@ -150,11 +168,10 @@ class GridViewItemState extends State<GridViewItem> {
           });
         },
         child: GestureDetector(
-          onTap: () {},
           child: Container(
             margin: const EdgeInsets.fromLTRB(10.0, 20.0, 10.0, 20.0),
             decoration: BoxDecoration(
-              color: Colors.red[500],
+              color: _isHovered ? Colors.orangeAccent : Colors.red[500],
               borderRadius: BorderRadius.circular(10),
             ),
             child: Column(children: [
@@ -178,39 +195,74 @@ class GridViewItemState extends State<GridViewItem> {
                   )),
             ]),
           ),
+          onTap: () {
+            Navigator.pushNamed(context, widget.menu.route);
+          },
         ));
   }
 }
 
-Widget gridViewItem(BuildContext context, Menu menu, double fontSize,
-    double imageWidth, double bottomPadding) {
-  return GestureDetector(
-    onTap: () {},
-    child: Container(
-      margin: const EdgeInsets.fromLTRB(10.0, 20.0, 10.0, 20.0),
-      decoration: BoxDecoration(
-        color: Colors.red[500],
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Column(children: [
-        Expanded(
-            child: Image.network(
-          menu.url,
-          width: imageWidth,
-        )),
-        Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-            child: Padding(
-              padding: EdgeInsets.fromLTRB(0, 0, 0, bottomPadding),
-              child: Text(
-                menu.title,
-                style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: fontSize),
-              ),
-            )),
-      ]),
-    ),
-  );
-}
+// Widget listViewItem(BuildContext context, Menu menu, double verticalPadding,
+//     double fontSize, double imageWidth) {
+//   return Container(
+//     margin: const EdgeInsets.fromLTRB(10.0, 20.0, 10.0, 0),
+//     decoration: BoxDecoration(
+//       color: Colors.red[500],
+//       borderRadius: BorderRadius.circular(10),
+//     ),
+//     child: ListTile(
+//       contentPadding:
+//           EdgeInsets.symmetric(horizontal: 16.0, vertical: verticalPadding),
+//       leading: Image.network(
+//         menu.url,
+//         width: imageWidth,
+//       ),
+//       title: Text(
+//         menu.title,
+//         style: TextStyle(
+//             color: Colors.white,
+//             fontWeight: FontWeight.bold,
+//             fontSize: fontSize),
+//       ),
+//       // subtitle: Text(article.author),
+//       onTap: () {
+//         //argument ini mau ngirim detailnya apa
+//         // Navigator.pushNamed(context, DetailNewsScreen.routeName,
+//         //     arguments: article);
+//       },
+//     ),
+//   );
+// }
+
+// Widget gridViewItem(BuildContext context, Menu menu, double fontSize,
+//     double imageWidth, double bottomPadding) {
+//   return GestureDetector(
+//     onTap: () {},
+//     child: Container(
+//       margin: const EdgeInsets.fromLTRB(10.0, 20.0, 10.0, 20.0),
+//       decoration: BoxDecoration(
+//         color: Colors.red[500],
+//         borderRadius: BorderRadius.circular(10),
+//       ),
+//       child: Column(children: [
+//         Expanded(
+//             child: Image.network(
+//           menu.url,
+//           width: imageWidth,
+//         )),
+//         Padding(
+//             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+//             child: Padding(
+//               padding: EdgeInsets.fromLTRB(0, 0, 0, bottomPadding),
+//               child: Text(
+//                 menu.title,
+//                 style: TextStyle(
+//                     color: Colors.white,
+//                     fontWeight: FontWeight.bold,
+//                     fontSize: fontSize),
+//               ),
+//             )),
+//       ]),
+//     ),
+//   );
+// }

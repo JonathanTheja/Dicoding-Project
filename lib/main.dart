@@ -1,4 +1,5 @@
 import 'package:final_project_dicoding/menus_screen.dart';
+import 'package:final_project_dicoding/tictactoe_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -27,7 +28,8 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: MenusScreen.routeName,
       routes: {
-        MenusScreen.routeName: (context) => const MenusScreen()
+        MenusScreen.routeName: (context) => const MenusScreen(),
+        TicTacToeScreen.routeName: (context) => const TicTacToeScreen()
       }
       // home: const MyHomePage(title: "Let's Play Games"),
     );

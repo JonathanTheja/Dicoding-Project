@@ -331,6 +331,15 @@ class _TicTacToePlayState extends State<TicTacToePlay> {
 
   @override
   Widget build(BuildContext context) {
+    if(winChecker(player, boards)){
+      resetBoards();
+    }
+    if(winChecker(bot, boards)){
+      resetBoards();
+    }
+    if(getBoardFilled() == 9){
+      resetBoards();
+    }
     double size = 100;
     double fontSize = 70;
     return Scaffold(

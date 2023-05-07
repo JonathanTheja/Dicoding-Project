@@ -34,8 +34,8 @@ class MyApp extends StatelessWidget {
       routes: {
         MenusScreen.routeName: (context) => const MenusScreen(),
         TicTacToeScreen.routeName: (context) => const TicTacToeScreen(),
-        // TicTacToePlay.routeName: (context) => TicTacToePlay(level: ModalRoute.of(context)?.settings.arguments as String),
-        TicTacToePlay.routeName: (context) => TicTacToePlay(level: 'impossible'),
+        TicTacToePlay.routeName: (context) => TicTacToePlay(level: ModalRoute.of(context)?.settings.arguments as String),
+        // TicTacToePlay.routeName: (context) => TicTacToePlay(level: 'impossible'),
         HiraganaPlay.routeName: (context) => const HiraganaPlay(),
         KatakanaPlay.routeName: (context) => const KatakanaPlay(),
       }

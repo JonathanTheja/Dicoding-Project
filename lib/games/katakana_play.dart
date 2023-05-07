@@ -2,26 +2,26 @@ import 'dart:convert';
 import 'dart:async' show Future;
 import 'dart:math';
 import 'package:final_project_dicoding/menus_screen.dart';
-import 'package:final_project_dicoding/models/hiragana.dart';
+import 'package:final_project_dicoding/models/katakana.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter/services.dart' show rootBundle;
 
-class HiraganaPlay extends StatefulWidget {
-  static const routeName = '/hiragana';
-  const HiraganaPlay({super.key});
+class KatakanaPlay extends StatefulWidget {
+  static const routeName = '/katakana';
+  const KatakanaPlay({super.key});
 
   @override
-  State<HiraganaPlay> createState() => _HiraganaPlayState();
+  State<KatakanaPlay> createState() => _KatakanaPlayState();
 }
 
-class _HiraganaPlayState extends State<HiraganaPlay> {
+class _KatakanaPlayState extends State<KatakanaPlay> {
   // double width = 400;
-  // Hiragana hiragana = DefaultAssetBundle.of(context).loadString("assets/hiragana.json");
-  List<Hiragana> hiragana = MenusScreen.hiragana;
-  List<Hiragana> hiragana_questions = [];
+  // Katakana katakana = DefaultAssetBundle.of(context).loadString("assets/katakana.json");
+  List<Katakana> katakana = MenusScreen.katakana;
+  List<Katakana> katakana_questions = [];
 
   List<String> choices = [];
   void generateQuestion(answer) {
@@ -31,13 +31,13 @@ class _HiraganaPlayState extends State<HiraganaPlay> {
         bool isSame = false;
         int randomIndex = Random().nextInt(46);
         for (var j = 0; j < choices.length; j++) {
-          if (choices[j] == hiragana[randomIndex].pronounciation) {
+          if (choices[j] == katakana[randomIndex].pronounciation) {
             isSame = true;
           }
         }
         if (!isSame) {
-          if (hiragana[randomIndex].pronounciation != answer) {
-            choices.add(hiragana[randomIndex].pronounciation);
+          if (katakana[randomIndex].pronounciation != answer) {
+            choices.add(katakana[randomIndex].pronounciation);
             break;
           }
         }
@@ -52,16 +52,16 @@ class _HiraganaPlayState extends State<HiraganaPlay> {
   }
 
   Future<void> loadQuestions() async {
-    if (hiragana_questions.length == 0) {
-      hiragana_questions = [];
+    if (katakana_questions.length == 0) {
+      katakana_questions = [];
       for (int i = 0; i < 46; i++) {
         int randomIndex = Random().nextInt(46);
         bool isExist = false;
         while (true) {
           randomIndex = Random().nextInt(46);
           isExist = false;
-          for (var questions in hiragana_questions) {
-            if (hiragana[randomIndex].hiragana == questions.hiragana) {
+          for (var questions in katakana_questions) {
+            if (katakana[randomIndex].katakana == questions.katakana) {
               isExist = true;
             }
           }
@@ -69,8 +69,8 @@ class _HiraganaPlayState extends State<HiraganaPlay> {
             break;
           }
         }
-        hiragana_questions.add(hiragana[randomIndex]);
-        // print(hiragana[randomIndex].hiragana);
+        katakana_questions.add(katakana[randomIndex]);
+        // print(katakana[randomIndex].katakana);
       }
     }
   }
@@ -82,10 +82,10 @@ class _HiraganaPlayState extends State<HiraganaPlay> {
     int crossAxisCount;
     double width;
     loadQuestions();
-    generateQuestion(hiragana_questions[0].pronounciation);
+    generateQuestion(katakana_questions[0].pronounciation);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Play Hiragana'),
+        title: Text('Play Katakana'),
       ),
       body: LayoutBuilder(
           builder: (BuildContext context, BoxConstraints constraints) {
@@ -126,7 +126,7 @@ class _HiraganaPlayState extends State<HiraganaPlay> {
                             margin: EdgeInsets.fromLTRB(0, 0, 20.0, 0),
                             child: Column(children: [
                               Text(
-                                hiragana_questions[0].hiragana,
+                                katakana_questions[0].katakana,
                                 style: TextStyle(fontSize: 150),
                               ),
                             ]),
@@ -140,16 +140,16 @@ class _HiraganaPlayState extends State<HiraganaPlay> {
                                         onTap: () => {
                                               setState(() => {
                                                     if (choice ==
-                                                        hiragana_questions[0]
+                                                        katakana_questions[0]
                                                             .pronounciation)
                                                       {
-                                                        hiragana_questions
+                                                        katakana_questions
                                                             .removeAt(0),
                                                       }
                                                   })
                                             },
                                         child: ItemChoice(
-                                            answer: hiragana_questions[0]
+                                            answer: katakana_questions[0]
                                                 .pronounciation,
                                             choice: choice,
                                             width: width))
@@ -166,9 +166,9 @@ class _HiraganaPlayState extends State<HiraganaPlay> {
                     crossAxisCount: crossAxisCount,
                     // childAspectRatio: 0.75,
                     children: List.generate(
-                        hiragana.length,
+                        katakana.length,
                         (index) => gridViewItem(context,
-                            hiragana[index], fontSize, margin)),
+                            katakana[index], fontSize, margin)),
                   ),
                 )
               ],
@@ -180,7 +180,7 @@ class _HiraganaPlayState extends State<HiraganaPlay> {
   }
 }
 
-Widget listViewItem(BuildContext context, Hiragana hiragana,
+Widget listViewItem(BuildContext context, Katakana katakana,
     double verticalPadding, double fontSize, double imageWidth) {
   return Container(
     margin: const EdgeInsets.fromLTRB(10.0, 20.0, 10.0, 0),
@@ -192,11 +192,11 @@ Widget listViewItem(BuildContext context, Hiragana hiragana,
       contentPadding:
           EdgeInsets.symmetric(horizontal: 16.0, vertical: verticalPadding),
       // leading: Image.network(
-      //   hiragana.,
+      //   katakana.,
       //   width: imageWidth,
       // ),
       title: Text(
-        hiragana.hiragana,
+        katakana.katakana,
         style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,
@@ -213,7 +213,7 @@ Widget listViewItem(BuildContext context, Hiragana hiragana,
 }
 
 Widget gridViewItem(
-    BuildContext context, Hiragana hiragana, double fontSize, double margin) {
+    BuildContext context, Katakana katakana, double fontSize, double margin) {
   return GestureDetector(
     onTap: () {},
     child: SizedBox.expand(
@@ -234,7 +234,7 @@ Widget gridViewItem(
           Container(
             padding: EdgeInsets.fromLTRB(0, 0, 0, margin),
             child: Text(
-              hiragana.hiragana,
+              katakana.katakana,
               style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
@@ -245,7 +245,7 @@ Widget gridViewItem(
           Container(
             padding: EdgeInsets.fromLTRB(0, margin, 0, 0),
             child: Text(
-              hiragana.pronounciation,
+              katakana.pronounciation,
               style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
@@ -258,7 +258,7 @@ Widget gridViewItem(
   );
 }
 
-// Widget gridViewItem(BuildContext context, Hiragana hiragana, double fontSize,
+// Widget gridViewItem(BuildContext context, Katakana katakana, double fontSize,
 //     double imageWidth, double bottomPadding) {
 //   return Container(
 //     margin: const EdgeInsets.all(8),

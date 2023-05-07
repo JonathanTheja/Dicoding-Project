@@ -1,6 +1,8 @@
 import 'package:final_project_dicoding/games/hiragana_play.dart';
+import 'package:final_project_dicoding/games/katakana_play.dart';
 import 'package:final_project_dicoding/games/tictactoe_play.dart';
 import 'package:final_project_dicoding/menus_screen.dart';
+import 'package:final_project_dicoding/models/katakana.dart';
 import 'package:final_project_dicoding/tictactoe_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -35,6 +37,7 @@ class MyApp extends StatelessWidget {
         // TicTacToePlay.routeName: (context) => TicTacToePlay(level: ModalRoute.of(context)?.settings.arguments as String),
         TicTacToePlay.routeName: (context) => TicTacToePlay(level: 'impossible'),
         HiraganaPlay.routeName: (context) => const HiraganaPlay(),
+        KatakanaPlay.routeName: (context) => const KatakanaPlay(),
       }
       // home: const MyHomePage(title: "Let's Play Games"),
     );

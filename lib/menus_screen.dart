@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:final_project_dicoding/models/hiragana.dart';
+import 'package:final_project_dicoding/models/katakana.dart';
 import 'package:final_project_dicoding/models/menus.dart';
 import 'package:final_project_dicoding/tictactoe_screen.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,7 @@ import 'package:flutter/src/widgets/framework.dart';
 class MenusScreen extends StatefulWidget {
   static const routeName = '/menus';
   static List<Hiragana> hiragana = [];
+  static List<Katakana> katakana = [];
   const MenusScreen({super.key});
 
   @override
@@ -28,9 +30,24 @@ class _MenusScreenState extends State<MenusScreen> {
               pronounciation: item['pronounciation'],
             ))
         .toList();
-    print(MenusScreen.hiragana[0].hiragana);
-    print(MenusScreen.hiragana[0].pronounciation);
-    print(MenusScreen.hiragana.length);
+    // print(MenusScreen.hiragana[0].hiragana);
+    // print(MenusScreen.hiragana[0].pronounciation);
+    // print(MenusScreen.hiragana.length);
+  }
+
+  Future<void> loadKatakana() async {
+    final String jsonString =
+        await rootBundle.loadString('../assets/katakana.json');
+    List<dynamic> katakanaJson = await jsonDecode(jsonString)['katakana'];
+    MenusScreen.katakana = katakanaJson
+        .map((item) => Katakana(
+              katakana: item['katakana'],
+              pronounciation: item['pronounciation'],
+            ))
+        .toList();
+    // print(MenusScreen.katakana[0].katakana);
+    // print(MenusScreen.katakana[0].pronounciation);
+    // print(MenusScreen.katakana.length);
   }
 
   @override
@@ -43,7 +60,7 @@ class _MenusScreenState extends State<MenusScreen> {
             builder: (context, snapshot) {
               final List<Menu> menus = parseMenus(snapshot.data);
               return FutureBuilder(
-                  future: loadHiragana(),
+                  future: Future.wait([loadHiragana(), loadKatakana()]),
                   builder: (context, snapshot) {
                     return LayoutBuilder(builder:
                         (BuildContext context, BoxConstraints constraints) {

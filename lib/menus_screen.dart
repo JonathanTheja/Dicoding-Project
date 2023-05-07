@@ -21,8 +21,13 @@ class MenusScreen extends StatefulWidget {
 
 class _MenusScreenState extends State<MenusScreen> {
   Future<void> loadHiragana() async {
-    final String jsonString =
-        await rootBundle.loadString('../assets/hiragana.json');
+    String jsonString = '';
+    try {
+      jsonString = await rootBundle.loadString('../assets/hiragana.json');
+    } catch (e) {}
+    try {
+      jsonString = await rootBundle.loadString('assets/hiragana.json');
+    } catch (e) {}
     List<dynamic> hiraganaJson = await jsonDecode(jsonString)['hiragana'];
     MenusScreen.hiragana = hiraganaJson
         .map((item) => Hiragana(
@@ -36,8 +41,13 @@ class _MenusScreenState extends State<MenusScreen> {
   }
 
   Future<void> loadKatakana() async {
-    final String jsonString =
-        await rootBundle.loadString('../assets/katakana.json');
+    String jsonString = '';
+    try {
+      jsonString = await rootBundle.loadString('../assets/katakana.json');
+    } catch (e) {}
+    try {
+      jsonString = await rootBundle.loadString('assets/katakana.json');
+    } catch (e) {}
     List<dynamic> katakanaJson = await jsonDecode(jsonString)['katakana'];
     MenusScreen.katakana = katakanaJson
         .map((item) => Katakana(

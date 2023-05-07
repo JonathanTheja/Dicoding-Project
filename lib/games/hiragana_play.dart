@@ -112,7 +112,7 @@ class _HiraganaPlayState extends State<HiraganaPlay> {
         }
         return SingleChildScrollView(
           child: Container(
-            height: constraints.maxHeight > 800 ? constraints.maxHeight : 800,
+            height: constraints.maxHeight,
             child: Stack(
               children: [
                 Align(

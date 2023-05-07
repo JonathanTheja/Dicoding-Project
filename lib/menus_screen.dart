@@ -9,17 +9,12 @@ import 'package:flutter/services.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
-class MenusScreen extends StatefulWidget {
+class MenusScreen extends StatelessWidget {
   static const routeName = '/menus';
   static List<Hiragana> hiragana = [];
   static List<Katakana> katakana = [];
   const MenusScreen({super.key});
 
-  @override
-  State<MenusScreen> createState() => _MenusScreenState();
-}
-
-class _MenusScreenState extends State<MenusScreen> {
   Future<void> loadHiragana() async {
     String jsonString = '';
     try {
@@ -115,7 +110,7 @@ class _MenusScreenState extends State<MenusScreen> {
                               bottomPadding: 30));
                       return GridView.count(
                           crossAxisCount: 3,
-                          childAspectRatio: 0.75,
+                            childAspectRatio: 0.85,
                           children: gridViewItemList
                           // List.generate(
                           //     menus.length,

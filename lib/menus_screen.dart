@@ -1,11 +1,16 @@
+import 'dart:convert';
+
+import 'package:final_project_dicoding/models/hiragana.dart';
 import 'package:final_project_dicoding/models/menus.dart';
 import 'package:final_project_dicoding/tictactoe_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
 class MenusScreen extends StatefulWidget {
   static const routeName = '/menus';
+  static List<Hiragana> hiragana = [];
   const MenusScreen({super.key});
 
   @override
@@ -13,66 +18,85 @@ class MenusScreen extends StatefulWidget {
 }
 
 class _MenusScreenState extends State<MenusScreen> {
+  Future<void> loadHiragana() async {
+    final String jsonString =
+        await rootBundle.loadString('../assets/hiragana.json');
+    List<dynamic> hiraganaJson = await jsonDecode(jsonString)['hiragana'];
+    MenusScreen.hiragana = hiraganaJson
+        .map((item) => Hiragana(
+              hiragana: item['hiragana'],
+              pronounciation: item['pronounciation'],
+            ))
+        .toList();
+    print(MenusScreen.hiragana[0].hiragana);
+    print(MenusScreen.hiragana[0].pronounciation);
+    print(MenusScreen.hiragana.length);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(title: const Text("Let's play games")),
-        body: FutureBuilder<String>(
+        body: FutureBuilder(
             future:
                 DefaultAssetBundle.of(context).loadString("assets/menus.json"),
             builder: (context, snapshot) {
               final List<Menu> menus = parseMenus(snapshot.data);
-              return LayoutBuilder(
-                  builder: (BuildContext context, BoxConstraints constraints) {
-                if (constraints.maxWidth <= 600) {
-                  return ListView.builder(
-                    itemCount: menus.length,
-                    itemBuilder: (context, index) {
-                      Widget listViewItem = ListViewItem(
-                        menu: menus[index],
-                        verticalPadding: 8.0,
-                        fontSize: 15,
-                        imageWidth: 100,
-                      );
-                      return listViewItem;
-                      // return listViewItem(context, menus[index], 8.0, 15, 100);
-                    },
-                  );
-                } else if (constraints.maxWidth <= 1200) {
-                  List<Widget> gridViewItemList = List.generate(
-                      menus.length,
-                      (index) => GridViewItem(
-                          menu: menus[index],
-                          fontSize: 30,
-                          imageWidth: 150,
-                          bottomPadding: 10));
-                  return GridView.count(
-                      crossAxisCount: 3,
-                      childAspectRatio: 0.75,
-                      children: gridViewItemList
-                      // List.generate(
-                      //     menus.length,
-                      //     (index) =>
-                      //         gridViewItem(context, menus[index], 30, 150, 10)),
-                      );
-                }
-                List<Widget> gridViewItemList = List.generate(
-                    menus.length,
-                    (index) => GridViewItem(
-                        menu: menus[index],
-                        fontSize: 40,
-                        imageWidth: 250,
-                        bottomPadding: 30));
-                return GridView.count(
-                    crossAxisCount: 3,
-                    childAspectRatio: 0.75,
-                    children: gridViewItemList
-                    // List.generate(
-                    //     menus.length,
-                    //     (index) =>
-                    //         gridViewItem(context, menus[index], 50, 300, 30)),
-                    );
-              });
+              return FutureBuilder(
+                  future: loadHiragana(),
+                  builder: (context, snapshot) {
+                    return LayoutBuilder(builder:
+                        (BuildContext context, BoxConstraints constraints) {
+                      if (constraints.maxWidth <= 600) {
+                        return ListView.builder(
+                          itemCount: menus.length,
+                          itemBuilder: (context, index) {
+                            Widget listViewItem = ListViewItem(
+                              menu: menus[index],
+                              verticalPadding: 8.0,
+                              fontSize: 20,
+                              imageWidth: 100,
+                            );
+                            return listViewItem;
+                            // return listViewItem(context, menus[index], 8.0, 15, 100);
+                          },
+                        );
+                      } else if (constraints.maxWidth <= 1200) {
+                        List<Widget> gridViewItemList = List.generate(
+                            menus.length,
+                            (index) => GridViewItem(
+                                menu: menus[index],
+                                fontSize: 30,
+                                imageWidth: 150,
+                                bottomPadding: 10));
+                        return GridView.count(
+                            crossAxisCount: 3,
+                            childAspectRatio: 0.75,
+                            children: gridViewItemList
+                            // List.generate(
+                            //     menus.length,
+                            //     (index) =>
+                            //         gridViewItem(context, menus[index], 30, 150, 10)),
+                            );
+                      }
+                      List<Widget> gridViewItemList = List.generate(
+                          menus.length,
+                          (index) => GridViewItem(
+                              menu: menus[index],
+                              fontSize: 40,
+                              imageWidth: 250,
+                              bottomPadding: 30));
+                      return GridView.count(
+                          crossAxisCount: 3,
+                          childAspectRatio: 0.75,
+                          children: gridViewItemList
+                          // List.generate(
+                          //     menus.length,
+                          //     (index) =>
+                          //         gridViewItem(context, menus[index], 50, 300, 30)),
+                          );
+                    });
+                  });
             }));
   }
 }

@@ -240,16 +240,20 @@ class _TicTacToePlayState extends State<TicTacToePlay> {
           if (isSudutTerdapat2(bot)) {
             break outerLoop;
           }
-          if (boards[0][0] == '' && (boards[0][2] != player || boards[2][0] != player)) {
+          if (boards[0][0] == '' &&
+              (boards[0][2] != player || boards[2][0] != player)) {
             boards[0][0] = bot;
             break outerLoop;
-          } else if (boards[0][2] == '' && (boards[0][0] != player || boards[2][2] != player)) {
+          } else if (boards[0][2] == '' &&
+              (boards[0][0] != player || boards[2][2] != player)) {
             boards[0][2] = bot;
             break outerLoop;
-          } else if (boards[2][0] == '' && (boards[0][0] != player || boards[2][2] != player)) {
+          } else if (boards[2][0] == '' &&
+              (boards[0][0] != player || boards[2][2] != player)) {
             boards[2][0] = bot;
             break outerLoop;
-          } else if (boards[2][2] == '' && (boards[0][2] != player || boards[2][0] != player)) {
+          } else if (boards[2][2] == '' &&
+              (boards[0][2] != player || boards[2][0] != player)) {
             boards[2][2] = bot;
             break outerLoop;
           }
@@ -334,7 +338,10 @@ class _TicTacToePlayState extends State<TicTacToePlay> {
             title: Text('Play Tic Tac Toe - ${widget.level.toUpperCase()}')),
         body: LayoutBuilder(
             builder: (BuildContext context, BoxConstraints constraints) {
-          if (constraints.maxWidth <= 800) {
+          if (constraints.maxWidth <= 400) {
+            size = 60;
+            fontSize = 40;
+          } else if (constraints.maxWidth <= 800) {
             size = 100;
             fontSize = 70;
           } else {
@@ -342,131 +349,147 @@ class _TicTacToePlayState extends State<TicTacToePlay> {
             fontSize = 100;
           }
           return SingleChildScrollView(
-            child: Align(
-                alignment: Alignment.center,
-                child: Container(
-                  padding: const EdgeInsets.fromLTRB(10.0, 0, 10.0, 0),
-                  color: Colors.red[200],
-                  height: 1500,
-                  width: size * 3 + 10 * 8,
-                  child: Center(
-                      child: Column(
-                    children: [
-                      Container(
-                        padding:
-                            const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
-                        child: Row(
+            child: Container(
+              height: constraints.maxHeight > size * 4 ? constraints.maxHeight : size * 6,
+              color: Colors.red[200],
+              child: Expanded(
+                  child: Align(
+                      alignment: Alignment.center,
+                      child: Container(
+                        padding: const EdgeInsets.fromLTRB(10.0, 0, 10.0, 0),
+                        color: Colors.red[200],
+                        width: size * 3 + 10 * 8,
+                        child: Center(
+                            child: Column(
                           children: [
-                            Flexible(
-                                flex: 1,
-                                fit: FlexFit.tight,
-                                child: Text('You : ' + player,
-                                    style: const TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 20))),
-                            Flexible(
-                                flex: 1,
-                                fit: FlexFit.tight,
-                                child: Text(
-                                    'Bot : ' + (player == 'X' ? 'O' : 'X'),
-                                    style: const TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 20))),
-                          ],
-                        ),
-                      ),
-                      for (int i = 0; i < 3; i++)
-                        GestureDetector(
-                          child: Row(
-                            children: [
-                              for (int j = 0; j < 3; j++)
-                                MouseRegion(
-                                  cursor: boards[i][j] == ''
-                                      ? SystemMouseCursors.click
-                                      : SystemMouseCursors.basic,
-                                  onEnter: (event) => {
-                                    if (boards[i][j] == '')
-                                      {
-                                        setState(
-                                            () => {isHovereds[i][j] = true})
-                                      }
-                                  },
-                                  onExit: (event) => {
-                                    setState(() => {isHovereds[i][j] = false})
-                                  },
-                                  child: GestureDetector(
-                                    onTap: () => {
-                                      if (boards[i][j] == '')
-                                        {
-                                          setState(
-                                            () => {
-                                              boards[i][j] = player,
-                                              if (winChecker(player, boards))
-                                                {
-                                                  showDialog(
-                                                      context: context,
-                                                      barrierDismissible: false,
-                                                      builder: (BuildContext
-                                                          context) {
-                                                        return cupertinoAlertDialog(
-                                                            player, false);
-                                                      }),
-                                                }
-                                              else
-                                                {
-                                                  randomBotMove(),
-                                                  if (winChecker(bot, boards))
-                                                    {
-                                                      showDialog(
-                                                          context: context,
-                                                          barrierDismissible:
-                                                              false,
-                                                          builder: (BuildContext
-                                                              context) {
-                                                            return cupertinoAlertDialog(
-                                                                bot, false);
-                                                          }),
-                                                    }
-                                                },
-                                            },
-                                          )
+                            Container(
+                              padding: const EdgeInsets.fromLTRB(
+                                  10.0, 10.0, 10.0, 10.0),
+                              child: Row(
+                                children: [
+                                  Flexible(
+                                      flex: 1,
+                                      fit: FlexFit.tight,
+                                      child: Text('You : ' + player,
+                                          style: const TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 20))),
+                                  Flexible(
+                                      flex: 1,
+                                      fit: FlexFit.tight,
+                                      child: Text(
+                                          'Bot : ' +
+                                              (player == 'X' ? 'O' : 'X'),
+                                          style: const TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 20))),
+                                ],
+                              ),
+                            ),
+                            for (int i = 0; i < 3; i++)
+                              GestureDetector(
+                                child: Row(
+                                  children: [
+                                    for (int j = 0; j < 3; j++)
+                                      MouseRegion(
+                                        cursor: boards[i][j] == ''
+                                            ? SystemMouseCursors.click
+                                            : SystemMouseCursors.basic,
+                                        onEnter: (event) => {
+                                          if (boards[i][j] == '')
+                                            {
+                                              setState(() =>
+                                                  {isHovereds[i][j] = true})
+                                            }
                                         },
-                                      if (getBoardFilled() >= 9)
-                                        {
-                                          showDialog(
-                                              context: context,
-                                              barrierDismissible: false,
-                                              builder: (BuildContext context) {
-                                                return cupertinoAlertDialog(
-                                                    player, true);
-                                              }),
-                                        }
-                                    },
-                                    child: Container(
-                                      margin: const EdgeInsets.fromLTRB(
-                                          10.0, 10.0, 10.0, 10.0),
-                                      decoration: BoxDecoration(
-                                          color: isHovereds[i][j]
-                                              ? Colors.red[600]
-                                              : Colors.red[400],
-                                          borderRadius:
-                                              BorderRadius.circular(10)),
-                                      height: size,
-                                      width: size,
-                                      child: Center(
-                                          child: Text(
-                                        boards[i][j],
-                                        style: TextStyle(fontSize: fontSize),
-                                      )),
-                                    ),
-                                  ),
+                                        onExit: (event) => {
+                                          setState(
+                                              () => {isHovereds[i][j] = false})
+                                        },
+                                        child: GestureDetector(
+                                          onTap: () => {
+                                            if (boards[i][j] == '')
+                                              {
+                                                setState(
+                                                  () => {
+                                                    boards[i][j] = player,
+                                                    if (winChecker(
+                                                        player, boards))
+                                                      {
+                                                        showDialog(
+                                                            context: context,
+                                                            barrierDismissible:
+                                                                false,
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
+                                                              return cupertinoAlertDialog(
+                                                                  player,
+                                                                  false);
+                                                            }),
+                                                      }
+                                                    else
+                                                      {
+                                                        randomBotMove(),
+                                                        if (winChecker(
+                                                            bot, boards))
+                                                          {
+                                                            showDialog(
+                                                                context:
+                                                                    context,
+                                                                barrierDismissible:
+                                                                    false,
+                                                                builder:
+                                                                    (BuildContext
+                                                                        context) {
+                                                                  return cupertinoAlertDialog(
+                                                                      bot,
+                                                                      false);
+                                                                }),
+                                                          }
+                                                      },
+                                                  },
+                                                )
+                                              },
+                                            if (getBoardFilled() >= 9)
+                                              {
+                                                showDialog(
+                                                    context: context,
+                                                    barrierDismissible: false,
+                                                    builder:
+                                                        (BuildContext context) {
+                                                      return cupertinoAlertDialog(
+                                                          player, true);
+                                                    }),
+                                              }
+                                          },
+                                          child: Container(
+                                            margin: const EdgeInsets.fromLTRB(
+                                                10.0, 10.0, 10.0, 10.0),
+                                            decoration: BoxDecoration(
+                                                color: isHovereds[i][j]
+                                                    ? Colors.red[600]
+                                                    : Colors.red[400],
+                                                borderRadius:
+                                                    BorderRadius.circular(10)),
+                                            height: size,
+                                            width: size,
+                                            child: Center(
+                                                child: Text(
+                                              boards[i][j],
+                                              style:
+                                                  TextStyle(fontSize: fontSize),
+                                            )),
+                                          ),
+                                        ),
+                                      ),
+                                  ],
                                 ),
-                            ],
-                          ),
-                        ),
-                    ],
-                  )),
-                )),
+                              ),
+                          ],
+                        )),
+                      ))),
+            ),
           );
         }));
   }

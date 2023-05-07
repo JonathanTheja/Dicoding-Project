@@ -1,0 +1,187 @@
+{
+    "katakana": [{
+            "katakana": "ア",
+            "pronounciation": "a"
+        },
+        {
+            "katakana": "イ",
+            "pronounciation": "i"
+        },
+        {
+            "katakana": "ウ",
+            "pronounciation": "u"
+        },
+        {
+            "katakana": "エ",
+            "pronounciation": "e"
+        },
+        {
+            "katakana": "オ",
+            "pronounciation": "o"
+        },
+        {
+            "katakana": "カ",
+            "pronounciation": "ka"
+        },
+        {
+            "katakana": "キ",
+            "pronounciation": "ki"
+        },
+        {
+            "katakana": "ク",
+            "pronounciation": "ku"
+        },
+        {
+            "katakana": "ケ",
+            "pronounciation": "ke"
+        },
+        {
+            "katakana": "コ",
+            "pronounciation": "ko"
+        },
+        {
+            "katakana": "サ",
+            "pronounciation": "sa"
+        },
+        {
+            "katakana": "シ",
+            "pronounciation": "shi"
+        },
+        {
+            "katakana": "ス",
+            "pronounciation": "su"
+        },
+        {
+            "katakana": "セ",
+            "pronounciation": "se"
+        },
+        {
+            "katakana": "ソ",
+            "pronounciation": "so"
+        },
+        {
+            "katakana": "タ",
+            "pronounciation": "ta"
+        },
+        {
+            "katakana": "チ",
+            "pronounciation": "chi"
+        },
+        {
+            "katakana": "ツ",
+            "pronounciation": "tsu"
+        },
+        {
+            "katakana": "テ",
+            "pronounciation": "te"
+        },
+        {
+            "katakana": "ト",
+            "pronounciation": "to"
+        },
+        {
+            "katakana": "ナ",
+            "pronounciation": "na"
+        },
+        {
+            "katakana": "ニ",
+            "pronounciation": "ni"
+        },
+        {
+            "katakana": "ヌ",
+            "pronounciation": "nu"
+        },
+        {
+            "katakana": "ネ",
+            "pronounciation": "ne"
+        },
+        {
+            "katakana": "ノ",
+            "pronounciation": "no"
+        },
+        {
+            "katakana": "ハ",
+            "pronounciation": "ha"
+        },
+        {
+            "katakana": "ヒ",
+            "pronounciation": "hi"
+        },
+        {
+            "katakana": "フ",
+            "pronounciation": "fu"
+        },
+        {
+            "katakana": "ヘ",
+            "pronounciation": "he"
+        },
+        {
+            "katakana": "ホ",
+            "pronounciation": "ho"
+        },
+        {
+            "katakana": "マ",
+            "pronounciation": "ma"
+        },
+        {
+            "katakana": "ミ",
+            "pronounciation": "mi"
+        },
+        {
+            "katakana": "ム",
+            "pronounciation": "mu"
+        },
+        {
+            "katakana": "メ",
+            "pronounciation": "me"
+        },
+        {
+            "katakana": "モ",
+            "pronounciation": "mo"
+        },
+        {
+            "katakana": "ヤ",
+            "pronounciation": "ya"
+        },
+        {
+            "katakana": "ユ",
+            "pronounciation": "yu"
+        },
+        {
+            "katakana": "ヨ",
+            "pronounciation": "yo"
+        },
+        {
+            "katakana": "ラ",
+            "pronounciation": "ra"
+        },
+        {
+            "katakana": "リ",
+            "pronounciation": "ri"
+        },
+        {
+            "katakana": "ル",
+            "pronounciation": "ru"
+        },
+        {
+            "katakana": "レ",
+            "pronounciation": "re"
+        },
+        {
+            "katakana": "ロ",
+            "pronounciation": "ro"
+        },
+        {
+            "katakana": "ワ",
+            "pronounciation": "wa"
+        },
+        {
+            "katakana": "ヲ",
+            "pronounciation": "wo"
+        },
+        {
+            "katakana": "ン",
+            "pronounciation": "n"
+        }
+    ]
+}

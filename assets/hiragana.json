@@ -1,0 +1,188 @@
+{
+  "hiragana": [
+    {
+      "hiragana": "あ",
+      "pronounciation": "a"
+    },
+    {
+      "hiragana": "い",
+      "pronounciation": "i"
+    },
+    {
+      "hiragana": "う",
+      "pronounciation": "u"
+    },
+    {
+      "hiragana": "え",
+      "pronounciation": "e"
+    },
+    {
+      "hiragana": "お",
+      "pronounciation": "o"
+    },
+    {
+      "hiragana": "か",
+      "pronounciation": "ka"
+    },
+    {
+      "hiragana": "き",
+      "pronounciation": "ki"
+    },
+    {
+      "hiragana": "く",
+      "pronounciation": "ku"
+    },
+    {
+      "hiragana": "け",
+      "pronounciation": "ke"
+    },
+    {
+      "hiragana": "こ",
+      "pronounciation": "ko"
+    },
+    {
+      "hiragana": "さ",
+      "pronounciation": "sa"
+    },
+    {
+      "hiragana": "し",
+      "pronounciation": "shi"
+    },
+    {
+      "hiragana": "す",
+      "pronounciation": "su"
+    },
+    {
+      "hiragana": "せ",
+      "pronounciation": "se"
+    },
+    {
+      "hiragana": "そ",
+      "pronounciation": "so"
+    },
+    {
+      "hiragana": "た",
+      "pronounciation": "ta"
+    },
+    {
+      "hiragana": "ち",
+      "pronounciation": "chi"
+    },
+    {
+      "hiragana": "つ",
+      "pronounciation": "tsu"
+    },
+    {
+      "hiragana": "て",
+      "pronounciation": "te"
+    },
+    {
+      "hiragana": "と",
+      "pronounciation": "to"
+    },
+    {
+      "hiragana": "な",
+      "pronounciation": "na"
+    },
+    {
+      "hiragana": "に",
+      "pronounciation": "ni"
+    },
+    {
+      "hiragana": "ぬ",
+      "pronounciation": "nu"
+    },
+    {
+      "hiragana": "ね",
+      "pronounciation": "ne"
+    },
+    {
+      "hiragana": "の",
+      "pronounciation": "no"
+    },
+    {
+      "hiragana": "は",
+      "pronounciation": "ha"
+    },
+    {
+      "hiragana": "ひ",
+      "pronounciation": "hi"
+    },
+    {
+      "hiragana": "ふ",
+      "pronounciation": "fu"
+    },
+    {
+      "hiragana": "へ",
+      "pronounciation": "he"
+    },
+    {
+      "hiragana": "ほ",
+      "pronounciation": "ho"
+    },
+    {
+      "hiragana": "ま",
+      "pronounciation": "ma"
+    },
+    {
+      "hiragana": "み",
+      "pronounciation": "mi"
+    },
+    {
+      "hiragana": "む",
+      "pronounciation": "mu"
+    },
+    {
+      "hiragana": "め",
+      "pronounciation": "me"
+    },
+    {
+      "hiragana": "も",
+      "pronounciation": "mo"
+    },
+    {
+      "hiragana": "や",
+      "pronounciation": "ya"
+    },
+    {
+      "hiragana": "ゆ",
+      "pronounciation": "yu"
+    },
+    {
+      "hiragana": "よ",
+      "pronounciation": "yo"
+    },
+    {
+      "hiragana": "ら",
+      "pronounciation": "ra"
+    },
+    {
+      "hiragana": "り",
+      "pronounciation": "ri"
+    },
+    {
+      "hiragana": "る",
+      "pronounciation": "ru"
+    },
+    {
+      "hiragana": "れ",
+      "pronounciation": "re"
+    },
+    {
+      "hiragana": "ろ",
+      "pronounciation": "ro"
+    },
+    {
+      "hiragana": "わ",
+      "pronounciation": "wa"
+    },
+    {
+      "hiragana": "を",
+      "pronounciation": "wo"
+    },
+    {
+      "hiragana": "ん",
+      "pronounciation": "n"
+    }
+  ]
+}
